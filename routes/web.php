@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MenteriController;
+use App\Http\Controllers\BphController;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +21,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dbconn', function () {
-    return view('dbconn');
-});
+
+// Route untuk mengarahkan menteri ke chart kementrian mereka
+Route::get('/menteri/prokerchart', [MenteriController::class, 'redirectToProkerChart']);
+
+// Route untuk menampilkan chart berdasarkan ID kementrian
+Route::get('/menteri/prokerchart/{id_kementrian}', [MenteriController::class, 'showChart'])->name('prokerchart');
+
+
+Route::get('/bph/prokerchart', [BphController::class, 'showChart']);
+
+
+
+
